@@ -1,0 +1,15 @@
+#!/bin/bash
+user=$(whoami)
+uid=$(id -u $user)
+gid=100
+pw=12345678
+docker run \
+	--privileged\
+	--rm\
+	-p 5901:5901\
+	--name clangvnc\
+ 	-e user=$user\
+	-e uid=$uid \
+	-e gid=$gid \
+	-e pw=$pw\
+	clangvnc /bin/bash -c "/vnc"
